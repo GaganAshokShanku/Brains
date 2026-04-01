@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Second Brain</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="main">
+
+    <h1 class="title">🧠 AI Second Brain</h1>
+
+    <!-- Add Notes -->
+    <div class="card fade-in">
+        <h2>Add Notes</h2>
+        <form action="/add" method="post">
+            <textarea name="content" placeholder="Write your notes..."></textarea>
+            <button class="btn">Add Note</button>
+        </form>
+    </div>
+
+    <!-- Search -->
+    <div class="card fade-in delay">
+        <h2>Find Related Topics</h2>
+        <form action="/similar" method="post">
+            <input type="text" name="query" placeholder="Enter topic">
+            <button class="btn">Search</button>
+        </form>
+    </div>
+
+    <!-- Notes -->
+    <div class="card slide-up">
+        <h2>Stored Notes</h2>
+        <ul>
+            {% for note in notes %}
+                <li class="note-item">{{ note[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Results -->
+    <div class="card slide-up delay">
+        <h2>Similar Results</h2>
+        <ul>
+            {% if results %}
+                {% for r in results %}
+                    <li class="result-item">
+                        {{ r[0] }}
+                        <span class="score">{{ r[1] }}</span>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
