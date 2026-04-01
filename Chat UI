@@ -1,0 +1,7 @@
+<div class="card">
+    <h2>🤖 Ask AI</h2>
+    <input type="text" id="chatInput" placeholder="Ask something...">
+    <button onclick="askAI()" class="btn">Ask</button>
+
+    <p id="chatOutput"></p>
+</div>
