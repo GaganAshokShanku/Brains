@@ -1,0 +1,27 @@
+// Smooth loading animation
+window.onload = () => {
+    document.body.style.opacity = 1;
+};
+
+// Button click animation
+document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.innerHTML = "Processing...";
+    });
+});
+
+// Typing effect for title
+const title = document.querySelector(".title");
+const text = "🧠 AI Second Brain";
+let i = 0;
+
+function typeEffect() {
+    if (i < text.length) {
+        title.innerHTML = text.substring(0, i+1);
+        i++;
+        setTimeout(typeEffect, 50);
+    }
+}
+
+title.innerHTML = "";
+typeEffect();
