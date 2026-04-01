@@ -1,0 +1,15 @@
+function askAI() {
+    let query = document.getElementById("chatInput").value;
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "query=" + query
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("chatOutput").innerText = data.answer;
+    });
+}
