@@ -1,0 +1,4 @@
+<div class="card">
+    <h2>🧠 Knowledge Graph</h2>
+    <canvas id="graphCanvas"></canvas>
+</div>
