@@ -1,0 +1,27 @@
+@app.route("/chat", methods=["POST"])
+def chat():
+    query = request.form["query"]
+    query_emb = get_embedding(query)
+
+    conn = sqlite3.connect("database.db")
+    c = conn.cursor()
+    c.execute("SELECT content, embedding FROM notes")
+    data = c.fetchall()
+    conn.close()
+
+    best_match = ""
+    best_score = -1
+
+    for d in data:
+        note = d[0]
+        emb = pickle.loads(d[1])
+
+        sim = np.dot(query_emb, emb) / (
+            np.linalg.norm(query_emb) * np.linalg.norm(emb)
+        )
+
+        if sim > best_score:
+            best_score = sim
+            best_match = note
+
+    return {"answer": best_match}
